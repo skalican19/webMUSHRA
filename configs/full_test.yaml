@@ -1,0 +1,102 @@
+testname: Emulovanie obvodov skreselnia zvuku
+testId: complete_test
+bufferSize: 2048
+stopOnErrors: true
+showButtonPreviousPage: true
+remoteService: service/write.php
+
+pages: 
+  - type: generic
+    name: WelcomePage
+    content: |
+      <h1>Vitajte na posluchovom teste</h1>
+      <p>Ďakujeme vám za účasť. Cieľom tohto testu je vyhodnotiť softvér určený na digitálnu emuláciu analógového skresľovacieho obvodu (napr. gitarového zosilňovača).</br>
+      V rámci testu budete hodnotiť podobnosť zvukových stôp vygenerovaných našim riešením, s nahrávkami vyhotovenými pomocou reálneho zosilovača. </br> Postupujte podľa nasledujúcich pokynov:</p>
+      <ol>
+        <li><strong>Počúvajte pozorne:</strong> Použite slúchadlá a uistite sa, že ste v tichom prostredí.</li>
+        <li><strong>Ohodnoťte vzorky: </strong> Po vypočutí referenčnej zvukovej nahrávky si vypočujete niekoľko testovacích vzoriek. Ohodnoťte každú vzorku na základe vášho vnímania jej kvality v porovnaní s ukážkovou zvukovou stopou.</li>
+        <li><strong>Použite stupnicu: </strong> Každej vzorke priraďte skóre od 0 (najhoršie) do 100 (najlepšie). Skóre 100 by ste mali prideliť len vtedy, ak vzorka znie rovnako ako ukážková.</li>
+      </ol> <p>Kliknutím na tlačidlo "Next" (Ďalej) spustite test.</p>
+  - type: mushra
+    id: showcase_trial
+    name: MUSHRA ukážka
+    content: |
+      <p>Toto cvičenie ukazuje, ako používať toto používateľské rozhranie.</p> 
+      <p>V posluchovom test MUSHRA je potrebné, aby ste hodnotili rozdiel medzi vzorovou audio nahrávkou a rôznymi generovanými nahrávkamii. Na tejto stránke vidíte niekoľko tlačidiel a posuvníkov.</p>
+      <ul>
+          <li><strong>Play (Prehrať):</strong> Spustí prehrávanie príslušnej nahrávky. Ak použijete tlačidlo počas prehrávania inej nahrávky, nová nahrávka bude pokračovať tam, kde skončila predchádzajúca.</li>
+          <li><strong>Pause (Pozastaviť):</strong> Dostupné len pri prehrávaní nahrávky, pozastaví prehrávanie.</li>
+          <li><strong>Stop:</strong> Úplné zastavenie prehrávania.</li>
+          <li><strong>Posuvníky pod vizualizáciou signálu</strong> slúžia na orezanie časti nahrávky, napr. ak sa chcete zamerať len na určitú časť zvukovej stopy.</li>
+          <li><strong>Každá vygenerovaná vzorka má posuvník</strong>, ktorý slúži na ohodnotenie toho, ako veľmi sa daná nahrávka zhoduje s ukážkovou nahrávkou (0 - vôbec, 100 - identické).</li>
+      </ul> <p>Po vyhodnotení všetkých audio stôp pokračujte na ďalšiu stránku pomocou tlačidla &quot;<strong>Next</strong>&quot; (Ďalej).</p>
+    showWaveform: true
+    enableLooping: true 
+    reference: configs/resources/audio/mono_ref.wav
+    stimuli:
+        C1: configs/resources/audio/mono_c1.wav
+        C2: configs/resources/audio/mono_c2.wav
+        C3: configs/resources/audio/mono_c3.wav
+
+  - 
+        - random
+        - type: mushra
+          id: trial_10-10
+          name: Marshall </br> Presence: 10 Gain: 10
+          content: |
+            <p></p>
+          showWaveform: true
+          enableLooping: true 
+          reference: configs/resources/audio/mono_ref.wav
+          stimuli:
+              C1: configs/resources/audio/mono_c1.wav
+              C2: configs/resources/audio/mono_c2.wav
+              C3: configs/resources/audio/mono_c3.wav
+        - type: mushra
+          id: trial_5-7
+          name: Marshall </br> Presence: 5 Gain: 7
+          content: |
+            <p></p>
+          showWaveform: true
+          enableLooping: true 
+          reference: configs/resources/audio/mono_ref.wav
+          stimuli:
+              C1: configs/resources/audio/mono_c1.wav
+              C2: configs/resources/audio/mono_c2.wav
+              C3: configs/resources/audio/mono_c3.wav
+  - type: finish
+    name: Koniec testu
+    content: Ďakujeme za účasť!
+    showResults: true
+    writeResults: true
+    questionnaire:
+        - type: likert
+          name: guitarist
+          label: Hrávate na elektrickú gitaru?
+          response:
+            - value: yes
+              label: Áno
+            - value: no
+              label: Nie
+        - type: likert
+          name: uses_effects
+          label: Ak áno, využívate pri hre zosilovač alebo iné efekty skresľujúce zvuk?
+          response:
+            - value: yes
+              label: Áno
+            - value: no
+              label: Nie
+        - type: likert
+          name: experience
+          label: Máte skúsenosti s nahrávaním, mixom alebo produkciou hudby?</br>
+          response:
+            - value: 1
+              label: Vôbec žiadne
+            - value: 2
+              label: Malé skúsenosti
+            - value: 3
+              label: Stredné skúsenosti
+            - value: 4
+              label: Pokročilé skúsenosti
+            - value: 5
+              label: Expert
