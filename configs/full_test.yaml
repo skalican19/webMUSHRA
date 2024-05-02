@@ -66,7 +66,7 @@ pages:
               C3: configs/resources/audio/mono_c3.wav
   - type: finish
     name: Koniec testu
-    content: Ďakujeme za účasť!
+    content: Ďakujeme za účasť!</br> Ku koncu by som vás poprosil ešte pár drobných otázok na záver.
     showResults: true
     writeResults: true
     questionnaire:
