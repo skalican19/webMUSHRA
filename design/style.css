@@ -110,7 +110,7 @@ table.logo {
 }
 
 td.stopButton {
-  width: 10%;
+  width: 20%;
   vertical-align: bottom;
   padding-right: 1em;
   padding-bottom: 1em;
@@ -133,7 +133,7 @@ td.stopButton {
 }
 
 #buttonStop, .audioControlElement {
-  width: 5.5em !important;
+  width: 8em !important;
   margin : 0 auto;
 }
 

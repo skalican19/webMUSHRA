@@ -7,7 +7,7 @@ remoteService: service/write.php
 
 pages: 
   - type: generic
-    name: WelcomePage
+    name: MUSHRA posluchový test
     content: |
       <h1>Vitajte na posluchovom teste</h1>
       <p>Ďakujeme vám za účasť. Cieľom tohto testu je vyhodnotiť softvér určený na digitálnu emuláciu analógového skresľovacieho obvodu (napr. gitarového zosilňovača).</br>
@@ -16,7 +16,13 @@ pages:
         <li><strong>Počúvajte pozorne:</strong> Použite slúchadlá a uistite sa, že ste v tichom prostredí.</li>
         <li><strong>Ohodnoťte vzorky: </strong> Po vypočutí referenčnej zvukovej nahrávky si vypočujete niekoľko testovacích vzoriek. Ohodnoťte každú vzorku na základe vášho vnímania jej kvality v porovnaní s ukážkovou zvukovou stopou.</li>
         <li><strong>Použite stupnicu: </strong> Každej vzorke priraďte skóre od 0 (najhoršie) do 100 (najlepšie). Skóre 100 by ste mali prideliť len vtedy, ak vzorka znie rovnako ako ukážková.</li>
-      </ol> <p>Kliknutím na tlačidlo "Next" (Ďalej) spustite test.</p>
+      </ol> <p>Kliknutím na tlačidlo "Ďalej" spustite test.</p>
+  - type: volume
+    id: vol
+    name: Nastavenie hlasitosti
+    content: Upravte si hlasitosť podľa potreby
+    stimulus: configs\resources\audio\scaled_ref_[8,5,5,5,8,0].wav
+    defaultVolume: 0.5
   - type: mushra
     id: showcase_trial
     name: MUSHRA ukážka
@@ -24,12 +30,12 @@ pages:
       <p>Toto cvičenie ukazuje, ako používať toto používateľské rozhranie.</p> 
       <p>V posluchovom test MUSHRA je potrebné, aby ste hodnotili rozdiel medzi vzorovou audio nahrávkou a rôznymi generovanými nahrávkamii. Na tejto stránke vidíte niekoľko tlačidiel a posuvníkov.</p>
       <ul>
-          <li><strong>Play (Prehrať):</strong> Spustí prehrávanie príslušnej nahrávky. Ak použijete tlačidlo počas prehrávania inej nahrávky, nová nahrávka bude pokračovať tam, kde skončila predchádzajúca.</li>
-          <li><strong>Pause (Pozastaviť):</strong> Dostupné len pri prehrávaní nahrávky, pozastaví prehrávanie.</li>
+          <li><strong>Prehrať:</strong> Spustí prehrávanie príslušnej nahrávky. Ak použijete tlačidlo počas prehrávania inej nahrávky, nová nahrávka bude pokračovať tam, kde skončila predchádzajúca.</li>
+          <li><strong>Pozastaviť:</strong> Dostupné len pri prehrávaní nahrávky, pozastaví prehrávanie.</li>
           <li><strong>Stop:</strong> Úplné zastavenie prehrávania.</li>
           <li><strong>Posuvníky pod vizualizáciou signálu</strong> slúžia na orezanie časti nahrávky, napr. ak sa chcete zamerať len na určitú časť zvukovej stopy.</li>
           <li><strong>Každá vygenerovaná vzorka má posuvník</strong>, ktorý slúži na ohodnotenie toho, ako veľmi sa daná nahrávka zhoduje s ukážkovou nahrávkou (0 - vôbec, 100 - identické).</li>
-      </ul> <p>Po vyhodnotení všetkých audio stôp pokračujte na ďalšiu stránku pomocou tlačidla &quot;<strong>Next</strong>&quot; (Ďalej).</p>
+      </ul> <p>Po vyhodnotení všetkých audio stôp pokračujte na ďalšiu stránku pomocou tlačidla &quot;<strong>Ďalej</strong>&quot;.</p>
     showWaveform: true
     enableLooping: true 
     reference: configs/resources/audio/mono_ref.wav
@@ -47,11 +53,27 @@ pages:
             <p></p>
           showWaveform: true
           enableLooping: true 
-          reference: configs/resources/audio/mono_ref.wav
+          reference: configs/resources/audio/LSTM-1-96-spectral/scaled_ref_data_[10,5,5,5,10,0].wav
           stimuli:
-              C1: configs/resources/audio/mono_c1.wav
-              C2: configs/resources/audio/mono_c2.wav
-              C3: configs/resources/audio/mono_c3.wav
+              LSTM-1-96-spectral: configs/resources/audio/LSTM-1-96-spectral/data_[10,5,5,5,10,0].wav
+              LSTM-3-96-esr: configs/resources/audio/LSTM-3-96-esr/data_[10,5,5,5,10,0].wav
+              anchor: configs/resources/audio/anchor/data_[10,5,5,5,10,0].wav
+              Seq2Seq-1-96-spectral: configs/resources/audio/Seq2Seq-1-96-spectral/data_[10,5,5,5,10,0].wav
+              Seq2Seq-2-32-esr: configs/resources/audio/Seq2Seq-2-32-esr/data_[10,5,5,5,10,0].wav
+        - type: mushra
+          id: trial_0-5
+          name: Marshall </br> Presence: 0 Gain: 5
+          content: |
+            <p></p>
+          showWaveform: true
+          enableLooping: true 
+          reference: configs/resources/audio/LSTM-1-96-spectral/scaled_ref_data_[0,5,5,5,5,0].wav
+          stimuli:
+              Seq2Seq-1-96-spectral: configs/resources/audio/Seq2Seq-1-96-spectral/data_[0,5,5,5,5,0].wav
+              Seq2Seq-2-32-esr: configs/resources/audio/Seq2Seq-2-32-esr/data_[0,5,5,5,5,0].wav
+              anchor: configs/resources/audio/anchor/data_[0,5,5,5,5,0].wav
+              LSTM-1-96-spectral: configs/resources/audio/LSTM-1-96-spectral/data_[0,5,5,5,5,0].wav
+              LSTM-3-96-esr: configs/resources/audio/LSTM-3-96-esr/data_[0,5,5,5,5,0].wav
         - type: mushra
           id: trial_5-7
           name: Marshall </br> Presence: 5 Gain: 7
@@ -59,14 +81,57 @@ pages:
             <p></p>
           showWaveform: true
           enableLooping: true 
-          reference: configs/resources/audio/mono_ref.wav
+          reference: configs/resources/audio/LSTM-1-96-spectral/scaled_ref_data_[5,5,5,5,7,0].wav
           stimuli:
-              C1: configs/resources/audio/mono_c1.wav
-              C2: configs/resources/audio/mono_c2.wav
-              C3: configs/resources/audio/mono_c3.wav
+              anchor: configs/resources/audio/anchor/data_[5,5,5,5,7,0].wav
+              LSTM-1-96-spectral: configs/resources/audio/LSTM-1-96-spectral/data_[5,5,5,5,7,0].wav
+              Seq2Seq-1-96-spectral: configs/resources/audio/Seq2Seq-1-96-spectral/data_[5,5,5,5,7,0].wav
+              Seq2Seq-2-32-esr: configs/resources/audio/Seq2Seq-2-32-esr/data_[5,5,5,5,7,0].wav
+              LSTM-3-96-esr: configs/resources/audio/LSTM-3-96-esr/data_[5,5,5,5,7,0].wav
+        - type: mushra
+          id: trial_train_8-8
+          name: Marshall </br> Presence: 8 Gain: 8
+          content: |
+            <p></p>
+          showWaveform: true
+          enableLooping: true 
+          reference: configs/resources/audio/scaled_ref_[8,5,5,5,8,0].wav
+          stimuli:
+              LSTM-3-96-esr: configs/resources/audio/LSTM-3-96-esr/[8,5,5,5,8,0].wav
+              anchor: configs/resources/audio/anchor/[8,5,5,5,8,0].wav
+              Seq2Seq-1-96-spectral: configs/resources/audio/Seq2Seq-1-96-spectral/[8,5,5,5,8,0].wav
+              Seq2Seq-2-32-esr: configs/resources/audio/Seq2Seq-2-32-esr/[8,5,5,5,8,0].wav
+              LSTM-1-96-spectral: configs/resources/audio/LSTM-1-96-spectral/[8,5,5,5,8,0].wav
+        - type: mushra
+          id: trial_8-8
+          name: Marshall </br> Presence: 8 Gain: 8
+          content: |
+            <p></p>
+          showWaveform: true
+          enableLooping: true 
+          reference: configs/resources/audio/LSTM-1-96-spectral/scaled_ref_data_[8,5,5,5,8,0].wav
+          stimuli:
+              LSTM-3-96-esr: configs/resources/audio/LSTM-3-96-esr/data_[8,5,5,5,8,0].wav
+              Seq2Seq-1-96-spectral: configs/resources/audio/Seq2Seq-1-96-spectral/data_[8,5,5,5,8,0].wav
+              Seq2Seq-2-32-esr: configs/resources/audio/Seq2Seq-2-32-esr/data_[8,5,5,5,8,0].wav
+              anchor: configs/resources/audio/anchor/data_[8,5,5,5,8,0].wav
+              LSTM-1-96-spectral: configs/resources/audio/LSTM-1-96-spectral/data_[8,5,5,5,8,0].wav
+  - type: mushra
+    id: trial_32_v_96
+    name: Marshall </br> Presence: 8 Gain: 8
+    content: |
+      <p></p>
+    showWaveform: true
+    enableLooping: true 
+    reference: configs/resources/audio/LSTM-1-96-spectral/scaled_ref_data_[8,5,5,5,8,0].wav
+    stimuli:
+        LSTM-1-32-spectral: configs/resources/audio/LSTM-1-32-spectral/data_[8,5,5,5,8,0].wav
+        anchor: configs/resources/audio/anchor/data_[8,5,5,5,8,0].wav
+        LSTM-1-96-spectral: configs/resources/audio/LSTM-1-96-spectral/data_[8,5,5,5,8,0].wav  
+        
   - type: finish
     name: Koniec testu
-    content: Ďakujeme za účasť!</br> Ku koncu by som vás poprosil ešte pár drobných otázok na záver.
+    content: Ďakujeme za účasť!</br> Ku koncu by som vás poprosil zodpovedať ešte pár otázok.
     showResults: true
     writeResults: true
     questionnaire:
@@ -93,10 +158,8 @@ pages:
             - value: 1
               label: Vôbec žiadne
             - value: 2
-              label: Malé skúsenosti
+              label: Začiatočník
             - value: 3
-              label: Stredné skúsenosti
+              label: Pokročilý
             - value: 4
-              label: Pokročilé skúsenosti
-            - value: 5
               label: Expert
